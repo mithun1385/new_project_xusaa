@@ -1,0 +1,48 @@
+{
+  "name": "new_project",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9",
+    "@sap/hdi-deploy": "^5.6.0",
+    "@sap/xssec": "^4",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": "^9"
+  },
+  "scripts": {
+    "start": "cds run",
+      "h-deploy": "cds deploy --to hana:new_project-db"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "[production]": {
+        "auth": "xsuaa"
+      },
+      "cds": {
+        "build": {
+          "tasks": [
+            {
+              "for": "hana",
+              "dest": "./db"
+            },
+            {
+              "for": "node-cf"
+            }
+          ]
+        },
+        "cds": {
+          "requires": {
+            "db": {
+              "kind": "hana-cloud"
+            }
+          }
+        }
+      }
+    }
+  }
+}
