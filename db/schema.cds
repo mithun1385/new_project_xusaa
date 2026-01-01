@@ -3,7 +3,7 @@ using {
     managed,
     sap
 } from '@sap/cds/common';
-
+   
 namespace sap.capire.bookshop;
 
 entity Books : managed {
